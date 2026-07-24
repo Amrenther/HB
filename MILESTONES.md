@@ -23,7 +23,7 @@ This file is the GitHub roadmap for this repo only. Use it to create GitHub Mile
 
 | ID | GitHub milestone title | Soft target | Status |
 |---|---|---|---|
-| M1 | Foundation — scaffold, tokens, config | Late July 2026 | Open |
+| M1 | Foundation — scaffold, tokens, config | Late July 2026 | Done |
 | M2 | Atmosphere & Shell — background, cursor, loader | Late July 2026 | Open |
 | M3 | Core Sections — hero, countdown, gallery, letter | Early August 2026 | Open |
 | M4 | Mobile & Polish — iPhone 16 Pro, performance | Early August 2026 | Open |
@@ -52,7 +52,7 @@ PageLoader → HeroSection → CountdownSection → GallerySection → LetterSec
 ## M1 — Foundation
 
 **GitHub milestone title**: `Foundation — scaffold, tokens, config`  
-**Status**: Open  
+**Status**: Done  
 **Soft target**: Late July 2026  
 **Docs**: [§2 Tech Stack](./src_documentation.md#2-tech-stack) · [§3 Directory Structure](./src_documentation.md#3-directory-structure) · [§4 Configuration File](./src_documentation.md#4-configuration-file) · [§5 Design System](./src_documentation.md#5-design-system)
 
@@ -75,18 +75,18 @@ Replace the Vite starter with the project skeleton: folder layout, design tokens
 
 ### Tasks
 
-- [ ] Confirm dependencies from [§2](./src_documentation.md#2-tech-stack) (`framer-motion`, `react-type-animation`, `simplex-noise`, tilt, `lucide-react`, `clsx`, `tailwind-merge`)
-- [ ] Create directory tree under `src/components/{layout,background,cursor,sections,ui}`, `hooks`, `data`, `types`, `utils`
-- [ ] Implement `BirthdayConfig` + `birthdayConfig` in `src/data/birthday.config.ts`
-- [ ] Add shared types in `src/types/index.ts`
-- [ ] Add `cn()` utility in `src/utils/cn.ts`
-- [ ] Define color tokens (`luxury-black`, `luxury-white`, `platinum`, silver, aurora) and font families (Cormorant Garamond + Inter)
-- [ ] Add custom keyframes: `shimmer`, `float`, `glow-pulse`, `draw-line`
-- [ ] Add Tailwind screens including `sm: 393px` (iPhone 16 Pro primary mobile target)
-- [ ] Add safe-area spacing tokens and wire fonts/meta in `index.html`
-- [ ] Add `vercel.json` SPA rewrites
-- [ ] Create `public/photos/` with expected filenames (or placeholders)
-- [ ] Strip starter template UI from `App.tsx` / `App.css` so the shell is ready for M2
+- [x] Confirm dependencies from [§2](./src_documentation.md#2-tech-stack) (`framer-motion`, `react-type-animation`, `simplex-noise`, tilt, `lucide-react`, `clsx`, `tailwind-merge`)
+- [x] Create directory tree under `src/components/{layout,background,cursor,sections,ui}`, `hooks`, `data`, `types`, `utils`
+- [x] Implement `BirthdayConfig` + `birthdayConfig` in `src/data/birthday.config.ts`
+- [x] Add shared types in `src/types/index.ts`
+- [x] Add `cn()` utility in `src/utils/cn.ts`
+- [x] Define color tokens (`luxury-black`, `luxury-white`, `platinum`, silver, aurora) and font families (Cormorant Garamond + Inter)
+- [x] Add custom keyframes: `shimmer`, `float`, `glow-pulse`, `draw-line`
+- [x] Add Tailwind screens including `sm: 393px` (iPhone 16 Pro primary mobile target)
+- [x] Add safe-area spacing tokens and wire fonts/meta in `index.html`
+- [x] Add `vercel.json` SPA rewrites
+- [x] Create `public/photos/` with expected filenames (or placeholders)
+- [x] Strip starter template UI from `App.tsx` / `App.css` so the shell is ready for M2
 
 ### Done when
 
