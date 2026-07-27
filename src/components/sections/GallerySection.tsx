@@ -1,5 +1,5 @@
 // src/components/sections/GallerySection.tsx
-// Parallax photo masonry with 3D tilt (desktop) — 3-col desktop, 1-col mobile
+// Parallax photo masonry with 3D tilt (desktop) - 3-col desktop, 1-col mobile
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
@@ -7,24 +7,25 @@ import Tilt from 'react-parallax-tilt';
 import { birthdayConfig } from '../../data/birthday.config';
 import { useDeviceType } from '../../hooks/useDeviceType';
 
-// Column parallax speeds
 const columnOffsets: Array<[string, string]> = [
   ['-5%', '5%'],
   ['5%', '-5%'],
   ['-3%', '3%'],
 ];
 
-// Assign gallery positions
-const galleryConfig = [
-  { span: 'tall' },    // photo-1
-  { span: 'short' },   // photo-2
-  { span: 'tall' },    // photo-3 (col3)
-  { span: 'tall' },    // photo-4 (col2)
-  { span: 'short' },   // photo-5 (col1)
-  { span: 'short' },   // photo-6 (col3)
-];
+const cardAspectRatio = '4 / 5';
 
-function PhotoCard({ src, alt, isMobile, index }: { src: string; alt: string; isMobile: boolean; index: number }) {
+function PhotoCard({
+  src,
+  alt,
+  isMobile,
+  index,
+}: {
+  src: string;
+  alt: string;
+  isMobile: boolean;
+  index: number;
+}) {
   const card = (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -33,11 +34,16 @@ function PhotoCard({ src, alt, isMobile, index }: { src: string; alt: string; is
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
       data-cursor="hover"
       style={{
+        width: '100%',
+        height: '100%',
+        aspectRatio: cardAspectRatio,
         position: 'relative',
+        display: 'block',
         overflow: 'hidden',
         borderRadius: 8,
         border: '1px solid rgba(184,184,184,0.15)',
         cursor: 'none',
+        backgroundColor: '#080808',
       }}
     >
       <img
@@ -48,21 +54,23 @@ function PhotoCard({ src, alt, isMobile, index }: { src: string; alt: string; is
           width: '100%',
           height: '100%',
           objectFit: 'cover',
+          objectPosition: 'center',
           display: 'block',
-          transition: 'transform 0.6s ease',
+          transition: 'transform 0.6s ease, filter 0.6s ease',
           filter: 'grayscale(20%)',
         }}
         onMouseEnter={(e) => {
-          (e.currentTarget as HTMLImageElement).style.filter = 'grayscale(0%)';
-          (e.currentTarget as HTMLImageElement).style.transform = 'scale(1.03)';
+          const image = e.currentTarget as HTMLImageElement;
+          image.style.filter = 'grayscale(0%)';
+          image.style.transform = 'scale(1.03)';
         }}
         onMouseLeave={(e) => {
-          (e.currentTarget as HTMLImageElement).style.filter = 'grayscale(20%)';
-          (e.currentTarget as HTMLImageElement).style.transform = 'scale(1)';
+          const image = e.currentTarget as HTMLImageElement;
+          image.style.filter = 'grayscale(20%)';
+          image.style.transform = 'scale(1)';
         }}
       />
 
-      {/* Shimmer hover overlay */}
       <div
         style={{
           position: 'absolute',
@@ -74,11 +82,12 @@ function PhotoCard({ src, alt, isMobile, index }: { src: string; alt: string; is
         }}
       />
 
-      {/* Bottom platinum border fade */}
       <div
         style={{
           position: 'absolute',
-          bottom: 0, left: 0, right: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
           height: 40,
           background: 'linear-gradient(to top, rgba(8,8,8,0.4), transparent)',
           pointerEvents: 'none',
@@ -96,7 +105,7 @@ function PhotoCard({ src, alt, isMobile, index }: { src: string; alt: string; is
       glareEnable={false}
       scale={1.02}
       transitionSpeed={700}
-      style={{ transformStyle: 'preserve-3d' }}
+      style={{ width: '100%', height: '100%', transformStyle: 'preserve-3d' }}
     >
       {card}
     </Tilt>
@@ -121,23 +130,24 @@ function ParallaxColumn({
   return (
     <motion.div
       ref={ref}
-      style={{ y, display: 'flex', flexDirection: 'column', gap: '1rem' }}
+      style={{
+        y,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        width: '100%',
+      }}
     >
-      {indices.map((photoIdx, i) => {
-        const src = photos[photoIdx];
-        const cfg = galleryConfig[photoIdx];
-        const height = cfg?.span === 'tall' ? (isMobile ? 260 : 380) : (isMobile ? 200 : 260);
-        return (
-          <div key={photoIdx} style={{ height }}>
-            <PhotoCard
-              src={src}
-              alt={`Memory ${photoIdx + 1}`}
-              isMobile={isMobile}
-              index={i}
-            />
-          </div>
-        );
-      })}
+      {indices.map((photoIdx, i) => (
+        <div key={photoIdx} style={{ width: '100%', aspectRatio: cardAspectRatio }}>
+          <PhotoCard
+            src={photos[photoIdx]}
+            alt={`Memory ${photoIdx + 1}`}
+            isMobile={isMobile}
+            index={i}
+          />
+        </div>
+      ))}
     </motion.div>
   );
 }
@@ -156,7 +166,6 @@ export default function GallerySection() {
           : 'calc(8rem + env(safe-area-inset-top)) 4rem calc(8rem + env(safe-area-inset-bottom))',
       }}
     >
-      {/* Section Title */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -191,47 +200,27 @@ export default function GallerySection() {
         </p>
       </motion.div>
 
-      {/* Gallery Grid */}
       {isMobile ? (
-        // Single column — no tilt, subtle parallax
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%' }}>
           {photos.map((src, i) => (
-            <div key={i} style={{ height: i % 2 === 0 ? 300 : 220 }}>
-              <PhotoCard src={src} alt={`Memory ${i + 1}`} isMobile={true} index={i} />
+            <div key={i} style={{ width: '100%', aspectRatio: cardAspectRatio }}>
+              <PhotoCard src={src} alt={`Memory ${i + 1}`} isMobile index={i} />
             </div>
           ))}
         </div>
       ) : (
-        // 3-column asymmetric masonry with parallax
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
             gap: '1rem',
             alignItems: 'start',
+            width: '100%',
           }}
         >
-          {/* Column 1: photos 0, 4 */}
-          <ParallaxColumn
-            photos={photos}
-            indices={[0, 4]}
-            parallaxRange={columnOffsets[0]}
-            isMobile={false}
-          />
-          {/* Column 2: photos 1, 3 */}
-          <ParallaxColumn
-            photos={photos}
-            indices={[1, 3]}
-            parallaxRange={columnOffsets[1]}
-            isMobile={false}
-          />
-          {/* Column 3: photos 2, 5 */}
-          <ParallaxColumn
-            photos={photos}
-            indices={[2, 5]}
-            parallaxRange={columnOffsets[2]}
-            isMobile={false}
-          />
+          <ParallaxColumn photos={photos} indices={[0, 4]} parallaxRange={columnOffsets[0]} isMobile={false} />
+          <ParallaxColumn photos={photos} indices={[1, 3]} parallaxRange={columnOffsets[1]} isMobile={false} />
+          <ParallaxColumn photos={photos} indices={[2, 5]} parallaxRange={columnOffsets[2]} isMobile={false} />
         </div>
       )}
     </section>

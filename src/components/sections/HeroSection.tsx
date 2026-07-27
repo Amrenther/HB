@@ -37,7 +37,7 @@ export default function HeroSection() {
           inset: 0,
           backgroundImage: `url(${birthdayConfig.heroPhoto})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center top',
+          backgroundPosition: isMobile ? 'center top' : 'center 58%',
           opacity: 0.08,
           filter: 'grayscale(100%)',
           pointerEvents: 'none',
