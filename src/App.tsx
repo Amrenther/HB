@@ -100,7 +100,7 @@ export default function App() {
                   textTransform: 'uppercase',
                 }}
               >
-                Made of Kirthana🤍 · 2026
+                Made for Kirthana🤍 · 2026
               </p>
             </footer>
           </main>
