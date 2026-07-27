@@ -27,7 +27,7 @@ export interface BirthdayConfig {
 
 export const birthdayConfig: BirthdayConfig = {
   name: "Kirthana",
-  birthdayDate: "2026-08-09",
+  birthdayDate: "2026-08-09T00:00:00+05:30",
   birthYear: 2006,
   turningAge: 20,
 
