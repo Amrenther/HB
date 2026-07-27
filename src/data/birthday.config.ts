@@ -12,8 +12,7 @@ export interface BirthdayConfig {
   turningAge: number;
 
   // Creator info
-  fromName: string;
-  relationship: string;     // e.g., "your brother"
+     // e.g., "your brother"
 
   // Personal message (shown in LetterSection)
   message: string;          // Use \n for paragraph breaks
@@ -31,10 +30,8 @@ export const birthdayConfig: BirthdayConfig = {
   birthYear: 2006,
   turningAge: 20,
 
-  fromName: "Amrenther",
-  relationship: "your brother",
-
-  message: `Dear Kirthana,
+  message: `\n
+  Dear Kirthana,
 Happy 20th Birthday! 🎉
 Watching you grow into such a kind, strong, and wonderful person has been one of my greatest joys. I'm so proud to have you as my sister.
 
