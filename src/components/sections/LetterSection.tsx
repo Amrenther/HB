@@ -183,7 +183,7 @@ export default function LetterSection() {
               textTransform: 'uppercase',
             }}
           >
-            {birthdayConfig.fromName} — {birthdayConfig.relationship}
+            
           </p>
         </motion.div>
 
