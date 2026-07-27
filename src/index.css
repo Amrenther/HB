@@ -1,24 +1,27 @@
+/* ═══════════════════════════════════════════════════════
+   Kirthana's Birthday Website — Global Styles
+   Tailwind v4 @theme + CSS variables + Keyframes
+   ═══════════════════════════════════════════════════════ */
+
 @import "tailwindcss";
 
+/* ── Design Tokens ──────────────────────────────────── */
 @theme {
+  /* Color Palette */
   --color-luxury-black: #080808;
   --color-luxury-white: #F5F5F0;
-  --color-platinum: #B8B8B8;
+  --color-platinum:     #B8B8B8;
   --color-silver-light: #E0E0E0;
-  --color-silver-dark: #787878;
-
+  --color-silver-dark:  #787878;
   --color-aurora-purple: #2D1B69;
-  --color-aurora-blue: #0D2137;
-  --color-aurora-smoke: #1A1A2E;
+  --color-aurora-blue:   #0D2137;
+  --color-aurora-smoke:  #1A1A2E;
 
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  /* Typography */
+  --font-family-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-family-sans:  Inter, system-ui, sans-serif;
 
-  --spacing-safe-top: env(safe-area-inset-top);
-  --spacing-safe-bottom: env(safe-area-inset-bottom);
-  --spacing-safe-left: env(safe-area-inset-left);
-  --spacing-safe-right: env(safe-area-inset-right);
-
+  /* Breakpoints (iPhone 16 Pro primary) */
   --breakpoint-xs: 375px;
   --breakpoint-sm: 393px;
   --breakpoint-md: 768px;
@@ -26,93 +29,144 @@
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
 
+  /* Safe-area spacing */
+  --spacing-safe-top:    env(safe-area-inset-top);
+  --spacing-safe-bottom: env(safe-area-inset-bottom);
+  --spacing-safe-left:   env(safe-area-inset-left);
+  --spacing-safe-right:  env(safe-area-inset-right);
+
+  /* Animation durations */
   --animate-shimmer: shimmer 2s linear infinite;
-  --animate-float: float 6s ease-in-out infinite;
+  --animate-float: float 3s ease-in-out infinite;
   --animate-glow-pulse: glow-pulse 4s ease-in-out infinite;
-  --animate-draw-line: draw-line 1.2s ease-in-out forwards;
-
-  @keyframes shimmer {
-    0%   { background-position: -200% center; }
-    100% { background-position:  200% center; }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-12px); }
-  }
-
-  @keyframes glow-pulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(184, 184, 184, 0.2); }
-    50%       { box-shadow: 0 0 40px rgba(184, 184, 184, 0.5); }
-  }
-
-  @keyframes draw-line {
-    from { stroke-dashoffset: 1000; }
-    to   { stroke-dashoffset: 0; }
-  }
 }
 
-/* Base styles and defaults */
-html {
-  scroll-behavior: smooth;
+/* ── Keyframes ──────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
 }
 
-body {
-  background-color: var(--color-luxury-black);
-  color: var(--color-luxury-white);
-  font-family: var(--font-sans);
-  font-weight: 300;
-  margin: 0;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
 }
 
-/* Custom cursor default hidden for custom cursor to take over on desktop */
-@media (pointer: fine) {
-  * {
-    cursor: none;
-  }
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(184,184,184,0.2); }
+  50%       { box-shadow: 0 0 40px rgba(184,184,184,0.5); }
 }
 
-/* Restore system cursor on touch devices */
-@media (pointer: coarse) {
-  * {
-    cursor: auto !important;
-  }
-  .custom-cursor {
-    display: none !important;
-  }
+@keyframes draw-line {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
 }
 
-/* Remove iOS blue tap highlight */
-* {
+@keyframes digit-enter {
+  from { transform: translateY(-20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes digit-exit {
+  from { transform: translateY(0); opacity: 1; }
+  to   { transform: translateY(20px); opacity: 0; }
+}
+
+/* ── Base Reset ─────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Smooth momentum scrolling on iOS */
-.scroll-container {
-  -webkit-overflow-scrolling: touch;
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
 }
 
-/* Dynamic viewport height — fixes iOS Safari address bar collapse issue */
-.min-h-screen {
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #080808;
+  color: #F5F5F0;
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
   min-height: 100dvh;
-}
-.h-screen {
-  height: 100dvh;
+  position: relative;
 }
 
-/* Safe area padding helper classes */
-.pt-safe {
-  padding-top: var(--spacing-safe-top);
+/* ── Dynamic Viewport Height Fix (iOS Safari) ────────── */
+.min-h-screen  { min-height: 100dvh; }
+.h-screen      { height: 100dvh; }
+
+/* ── Safe-area Utilities ─────────────────────────────── */
+.pt-safe { padding-top: env(safe-area-inset-top); }
+.pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+.pl-safe { padding-left: env(safe-area-inset-left); }
+.pr-safe { padding-right: env(safe-area-inset-right); }
+
+/* ── Custom Cursor ─────────────────────────────────── */
+* { cursor: none; }
+
+@media (pointer: coarse) {
+  * { cursor: auto !important; }
+  .custom-cursor { display: none !important; }
 }
-.pb-safe {
-  padding-bottom: var(--spacing-safe-bottom);
+
+/* ── Smooth scrolling on iOS ────────────────────────── */
+.scroll-container { -webkit-overflow-scrolling: touch; }
+
+/* ── Shimmer Text Utility ────────────────────────────── */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #B8B8B8 0%,
+    #F5F5F0 30%,
+    #E0E0E0 50%,
+    #F5F5F0 70%,
+    #B8B8B8 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 2s linear infinite;
 }
-.pl-safe {
-  padding-left: var(--spacing-safe-left);
+
+/* ── Glow Utilities ──────────────────────────────────── */
+.glow-low    { text-shadow: 0 0 10px rgba(184,184,184,0.3); }
+.glow-medium { text-shadow: 0 0 20px rgba(184,184,184,0.5), 0 0 40px rgba(184,184,184,0.2); }
+.glow-high   { text-shadow: 0 0 30px rgba(184,184,184,0.8), 0 0 60px rgba(184,184,184,0.4), 0 0 100px rgba(184,184,184,0.2); }
+
+/* ── Float Animation Utility ─────────────────────────── */
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }
+.animate-shimmer { animation: shimmer 2s linear infinite; }
+
+/* ── SVG Draw Line ───────────────────────────────────── */
+.svg-draw-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-line 1.2s ease forwards;
 }
-.pr-safe {
-  padding-right: var(--spacing-safe-right);
+
+/* ── Selection Color ─────────────────────────────────── */
+::selection {
+  background-color: rgba(184, 184, 184, 0.2);
+  color: #F5F5F0;
+}
+
+/* ── Scrollbar Styling ───────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(184, 184, 184, 0.3);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(184, 184, 184, 0.5);
 }

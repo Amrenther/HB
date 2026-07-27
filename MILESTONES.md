@@ -23,11 +23,11 @@ This file is the GitHub roadmap for this repo only. Use it to create GitHub Mile
 
 | ID | GitHub milestone title | Soft target | Status |
 |---|---|---|---|
-| M1 | Foundation — scaffold, tokens, config | Late July 2026 | Done |
-| M2 | Atmosphere & Shell — background, cursor, loader | Late July 2026 | Open |
-| M3 | Core Sections — hero, countdown, gallery, letter | Early August 2026 | Open |
-| M4 | Mobile & Polish — iPhone 16 Pro, performance | Early August 2026 | Open |
-| M5 | Content & Launch — photos, message, Vercel | Before Aug 9, 2026 | Open |
+| M1 | Foundation — scaffold, tokens, config | Late July 2026 | **Done** |
+| M2 | Atmosphere & Shell — background, cursor, loader | Late July 2026 | **Done** |
+| M3 | Core Sections — hero, countdown, gallery, letter | Early August 2026 | **Done** |
+| M4 | Mobile & Polish — iPhone 16 Pro, performance | Early August 2026 | **In Progress** |
+| M5 | Content & Launch — photos, message, Vercel | Before Aug 9, 2026 | **Open** |
 
 ```
 M1 Foundation
@@ -52,7 +52,7 @@ PageLoader → HeroSection → CountdownSection → GallerySection → LetterSec
 ## M1 — Foundation
 
 **GitHub milestone title**: `Foundation — scaffold, tokens, config`  
-**Status**: Done  
+**Status**: **Done**  
 **Soft target**: Late July 2026  
 **Docs**: [§2 Tech Stack](./src_documentation.md#2-tech-stack) · [§3 Directory Structure](./src_documentation.md#3-directory-structure) · [§4 Configuration File](./src_documentation.md#4-configuration-file) · [§5 Design System](./src_documentation.md#5-design-system)
 
@@ -100,7 +100,7 @@ Replace the Vite starter with the project skeleton: folder layout, design tokens
 ## M2 — Atmosphere & Shell
 
 **GitHub milestone title**: `Atmosphere & Shell — background, cursor, loader`  
-**Status**: Open  
+**Status**: **Done**  
 **Soft target**: Late July 2026  
 **Docs**: [§6.1 Layout](./src_documentation.md#61-layout-components) · [§6.2 Background](./src_documentation.md#62-background-system) · [§6.3 Cursor](./src_documentation.md#63-cursor-system) · [§6.5 UI Primitives](./src_documentation.md#65-ui-primitives) · [§8 Animation System](./src_documentation.md#8-animation-system)
 
@@ -128,15 +128,15 @@ Ship the cinematic chrome that wraps every section: luxury background layers, cu
 
 ### Tasks
 
-- [ ] Implement background stack (z-order: RadialGlow → DotMatrix → AuroraBlobs → GrainOverlay)
-- [ ] Throttle grain to 24fps desktop / 12fps mobile; disable or comment path for low-end devices
-- [ ] Implement `CursorContext` + `CustomCursor` with variants (`default`, `hover`, `click`, `text`, `hidden`)
-- [ ] Hide custom cursor on `pointer: coarse`; restore system cursor on touch
-- [ ] Build `PageLoader` sequence (K reveal → tagline → shimmer → slide up → `onComplete`)
-- [ ] Build `SectionWrapper` with `useInView` / IntersectionObserver for iOS reliability
-- [ ] Add `ScrollProgress`, `SectionDivider`, `GlowText`
-- [ ] Export shared Framer variants / default transition from [§8](./src_documentation.md#8-animation-system)
-- [ ] Wire shell in `App.tsx`: loader → background → cursor → progress bar (sections still empty)
+- [x] Implement background stack (z-order: RadialGlow → DotMatrix → AuroraBlobs → GrainOverlay)
+- [x] Throttle grain to 24fps desktop / 12fps mobile; disable or comment path for low-end devices
+- [x] Implement `CursorContext` + `CustomCursor` with variants (`default`, `hover`, `click`, `text`, `hidden`)
+- [x] Hide custom cursor on `pointer: coarse`; restore system cursor on touch
+- [x] Build `PageLoader` sequence (K reveal → tagline → shimmer → slide up → `onComplete`)
+- [x] Build `SectionWrapper` with `useInView` / IntersectionObserver for iOS reliability
+- [x] Add `ScrollProgress`, `SectionDivider`, `GlowText`
+- [x] Export shared Framer variants / default transition from [§8](./src_documentation.md#8-animation-system)
+- [x] Wire shell in `App.tsx`: loader → background → cursor → progress bar (sections still empty)
 
 ### Done when
 
@@ -151,7 +151,7 @@ Ship the cinematic chrome that wraps every section: luxury background layers, cu
 ## M3 — Core Sections
 
 **GitHub milestone title**: `Core Sections — hero, countdown, gallery, letter`  
-**Status**: Open  
+**Status**: **Done**  
 **Soft target**: Early August 2026  
 **Docs**: [§1 Experience Flow](./src_documentation.md#1-project-overview) · [§6.4 Section Components](./src_documentation.md#64-section-components) · [§7 Hooks](./src_documentation.md#7-hooks-reference)
 
@@ -174,13 +174,13 @@ Build the full single-page experience: Hero → Countdown → Gallery → Letter
 
 ### Tasks
 
-- [ ] Implement `useCountdown`, `useScrollAnimation`, `useDeviceType`
-- [ ] Build `HeroSection`: SVG line draw, letter stagger for name, badge, scroll chevron, `ParticleCanvas`
-- [ ] Build `CountdownSection`: slot-machine digit transitions; desktop 4-col / mobile 2×2
-- [ ] Build `GallerySection`: 3-column masonry desktop, single column mobile; tilt desktop-only; parallax columns
-- [ ] Build `LetterSection`: `react-type-animation` triggered at ~30% in view; signature underline; optional letter photo
-- [ ] Assemble all sections in `App.tsx` with `SectionWrapper` + dividers between sections
-- [ ] Read all personalization from `birthdayConfig` only (no hardcoded name/date/message in sections)
+- [x] Implement `useCountdown`, `useScrollAnimation`, `useDeviceType`
+- [x] Build `HeroSection`: SVG line draw, letter stagger for name, badge, scroll chevron, `ParticleCanvas`
+- [x] Build `CountdownSection`: slot-machine digit transitions; desktop 4-col / mobile 2×2
+- [x] Build `GallerySection`: 3-column masonry desktop, single column mobile; tilt desktop-only; parallax columns
+- [x] Build `LetterSection`: `react-type-animation` triggered at ~30% in view; signature underline; optional letter photo
+- [x] Assemble all sections in `App.tsx` with `SectionWrapper` + dividers between sections
+- [x] Read all personalization from `birthdayConfig` only (no hardcoded name/date/message in sections)
 
 ### Done when
 
@@ -195,7 +195,7 @@ Build the full single-page experience: Hero → Countdown → Gallery → Letter
 ## M4 — Mobile & Polish
 
 **GitHub milestone title**: `Mobile & Polish — iPhone 16 Pro, performance`  
-**Status**: Open  
+**Status**: **In Progress**  
 **Soft target**: Early August 2026  
 **Docs**: [§8 Animation System](./src_documentation.md#8-animation-system) · [§9 Responsive Design — iPhone 16 Pro](./src_documentation.md#9-responsive-design--iphone-16-pro)
 
@@ -233,7 +233,7 @@ Make the site feel premium on iPhone 16 Pro (and other mobiles): safe areas, `dv
 ## M5 — Content & Launch
 
 **GitHub milestone title**: `Content & Launch — photos, message, Vercel`  
-**Status**: Open  
+**Status**: **Open**  
 **Soft target**: Before August 9, 2026  
 **Docs**: [§10 Photo Setup](./src_documentation.md#10-photo-setup-guide) · [§11 Deployment](./src_documentation.md#11-deployment-guide) · [§12 Customization](./src_documentation.md#12-customization-guide)
 
